@@ -85,8 +85,7 @@ async def sign_up(req: SignUpRequest, db: AsyncSession = Depends(get_db)):
 
     else:
         # ── Local dev mode ─────────────────────────────────────────────────────
-        from passlib.context import CryptContext
-        pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        import bcrypt as _bcrypt_lib
 
         # Check if user already exists (store email as UUID namespace)
         email_uuid = uuid.uuid5(uuid.NAMESPACE_URL, req.email)
@@ -98,7 +97,7 @@ async def sign_up(req: SignUpRequest, db: AsyncSession = Depends(get_db)):
 
         # Store password hash in display_name field as a stopgap for local dev
         # (production always uses Supabase — this is development-only)
-        pw_hash = pwd_ctx.hash(req.password)
+        pw_hash = _bcrypt_lib.hashpw(req.password.encode(), _bcrypt_lib.gensalt()).decode()
         profile = UserProfile(
             id=email_uuid,
             display_name=req.display_name or req.email,
@@ -150,8 +149,7 @@ async def sign_in(req: SignInRequest, db: AsyncSession = Depends(get_db)):
 
     else:
         # ── Local dev mode ─────────────────────────────────────────────────────
-        from passlib.context import CryptContext
-        pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        import bcrypt as _bcrypt_lib
 
         email_uuid = uuid.uuid5(uuid.NAMESPACE_URL, req.email)
         result = await db.execute(
@@ -168,7 +166,7 @@ async def sign_in(req: SignInRequest, db: AsyncSession = Depends(get_db)):
         else:
             raise HTTPException(status_code=401, detail="Invalid email or password")
 
-        if not pwd_ctx.verify(req.password, pw_hash):
+        if not _bcrypt_lib.checkpw(req.password.encode(), pw_hash.encode()):
             raise HTTPException(status_code=401, detail="Invalid email or password")
 
         token = _mint_local_jwt(str(email_uuid), req.email)

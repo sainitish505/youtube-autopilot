@@ -10,11 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
-# Pin bcrypt==4.0.1 first so passlib[bcrypt] doesn't override it
 COPY requirements-api.txt .
-RUN pip install --no-cache-dir bcrypt==4.0.1 && \
-    pip install --no-cache-dir -r requirements-api.txt && \
-    pip install --no-cache-dir --force-reinstall bcrypt==4.0.1
+RUN pip install --no-cache-dir -r requirements-api.txt
 
 # Copy application code
 COPY api/ ./api/
