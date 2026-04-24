@@ -1,0 +1,30 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# System dependencies (ffmpeg for video editing)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    ffmpeg \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements-worker.txt .
+RUN pip install --no-cache-dir -r requirements-worker.txt
+
+# Copy application code
+COPY api/ ./api/
+COPY core/ ./core/
+COPY agents/ ./agents/
+COPY tools/ ./tools/
+COPY config.py .
+COPY crew_compat.py .
+COPY crew.py .
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# ARQ worker entry point
+CMD ["python", "-m", "arq", "api.worker.tasks.WorkerSettings"]

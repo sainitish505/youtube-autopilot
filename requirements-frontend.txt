@@ -1,0 +1,17 @@
+# requirements-frontend.txt — Streamlit multi-tenant frontend dependencies
+# Install: pip install -r requirements-frontend.txt
+
+# ── UI framework ─────────────────────────────────────────────────────────────
+streamlit>=1.32.0
+
+# ── API client (calls FastAPI backend) ───────────────────────────────────────
+httpx>=0.27.0
+
+# ── Data display ─────────────────────────────────────────────────────────────
+pandas>=2.0.0
+
+# ── Supabase client (optional — for direct auth without proxying through API) ─
+supabase>=2.4.0
+
+# ── Environment ───────────────────────────────────────────────────────────────
+python-dotenv>=1.0.0

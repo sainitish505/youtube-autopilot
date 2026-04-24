@@ -1,0 +1,41 @@
+# YouTube Autopilot Agent v2 — Requirements
+# Install: pip install -r requirements.txt
+
+# ── CrewAI framework ──────────────────────────────────────────────────────────
+crewai>=0.80.0
+crewai-tools>=0.14.0
+
+# ── OpenAI (Sora, TTS, DALL-E, GPT-4o) ───────────────────────────────────────
+openai>=1.50.0
+
+# ── Google APIs (YouTube upload) ──────────────────────────────────────────────
+google-api-python-client>=2.100.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.2.0
+
+# ── Google Gemini (optional, future use) ─────────────────────────────────────
+langchain-google-genai>=1.0.0
+google-generativeai>=0.7.0
+
+# ── Config & environment ──────────────────────────────────────────────────────
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+
+# ── Video editing ─────────────────────────────────────────────────────────────
+moviepy>=1.0.3
+ffmpeg-python>=0.2.0
+
+# ── Audio ─────────────────────────────────────────────────────────────────────
+pydub>=0.25.1
+
+# ── Image processing ──────────────────────────────────────────────────────────
+Pillow>=10.0.0
+
+# ── Dashboard ─────────────────────────────────────────────────────────────────
+streamlit>=1.32.0
+
+# ── HTTP ──────────────────────────────────────────────────────────────────────
+requests>=2.31.0
+
+# ── Data / typing ─────────────────────────────────────────────────────────────
+pydantic>=2.5.0

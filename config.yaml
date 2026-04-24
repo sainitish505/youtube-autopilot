@@ -1,0 +1,15 @@
+autonomous_mode: true
+max_video_minutes: 10
+default_niche: ""
+human_approval_timeout: 300
+video_model: "sora-2"
+tts_voice: "alloy"
+upload_privacy: "public"
+auto_approve_under_dollars: 2.0
+video_resolution: "1920x1080"
+short_resolution: "720x1280"
+crossfade_duration: 0.5
+background_music_volume: 0.20
+log_level: "INFO"
+output_dir: "output"
+logs_dir: "logs"
