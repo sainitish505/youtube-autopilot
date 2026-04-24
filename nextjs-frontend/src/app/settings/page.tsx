@@ -210,7 +210,7 @@ function SettingsPageInner() {
         {prefs && (
           <Section title="🎬 Video Preferences">
             <form onSubmit={savePrefs} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-gray-400 mb-1">Default Niche</label>
                   <input

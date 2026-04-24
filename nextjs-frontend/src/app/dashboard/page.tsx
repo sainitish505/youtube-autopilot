@@ -148,8 +148,9 @@ function LiveJobCard({ job }: { job: Job }) {
           </div>
         )}
 
-        {/* Agent pipeline steps */}
-        <div className="grid grid-cols-7 gap-1.5">
+        {/* Agent pipeline steps — horizontally scrollable on small screens */}
+        <div className="overflow-x-auto -mx-1 pb-1">
+        <div className="grid grid-cols-7 gap-1.5 min-w-[380px] px-1">
           {AGENTS.map(({ name, label, icon: Icon, desc }, i) => {
             const a = agentStatuses.find((x) => x.agent_name === name);
             const status = a?.status || "pending";
@@ -201,6 +202,7 @@ function LiveJobCard({ job }: { job: Job }) {
             );
           })}
         </div>
+        </div>{/* end overflow-x-auto */}
 
         {/* Loading state when detail not yet fetched */}
         {agentStatuses.length === 0 && (
@@ -289,7 +291,7 @@ export default function DashboardPage() {
     <AppShell>
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-wrap items-start justify-between gap-3 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-white">Dashboard</h1>
             <div className="flex items-center gap-2 mt-1">
@@ -322,7 +324,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {stats.map(({ label, value, color, bg }) => (
             <div key={label} className={`${bg} border border-gray-800 rounded-xl p-4`}>
               <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">{label}</p>

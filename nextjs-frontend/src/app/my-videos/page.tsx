@@ -148,7 +148,7 @@ export default function MyVideosPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 mb-6 bg-gray-900 p-1 rounded-lg border border-gray-800 w-fit">
+        <div className="flex flex-wrap gap-1 mb-6 bg-gray-900 p-1 rounded-lg border border-gray-800 w-fit">
           {TABS.map(({ key, label }) => (
             <button
               key={key}
@@ -173,23 +173,25 @@ export default function MyVideosPage() {
           ) : visible.length === 0 ? (
             <div className="text-center py-20 text-gray-500">No jobs in this category.</div>
           ) : (
-            <table className="w-full">
-              <thead>
-                <tr className="text-xs font-medium text-gray-500 uppercase tracking-wide">
-                  <th className="px-4 py-3 text-left">Status</th>
-                  <th className="px-4 py-3 text-left">Title / Niche</th>
-                  <th className="px-4 py-3 text-left">Created</th>
-                  <th className="px-4 py-3 text-left">Scenes</th>
-                  <th className="px-4 py-3 text-left">Cost</th>
-                  <th className="px-4 py-3 text-left">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visible.map((j) => (
-                  <JobRow key={j.id} job={j} onCancel={handleCancel} />
-                ))}
-              </tbody>
-            </table>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[560px]">
+                <thead>
+                  <tr className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                    <th className="px-4 py-3 text-left">Status</th>
+                    <th className="px-4 py-3 text-left">Title / Niche</th>
+                    <th className="px-4 py-3 text-left">Created</th>
+                    <th className="px-4 py-3 text-left">Scenes</th>
+                    <th className="px-4 py-3 text-left">Cost</th>
+                    <th className="px-4 py-3 text-left">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {visible.map((j) => (
+                    <JobRow key={j.id} job={j} onCancel={handleCancel} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       </div>

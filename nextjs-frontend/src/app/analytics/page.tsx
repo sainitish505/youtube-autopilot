@@ -79,7 +79,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Top metrics */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {[
             {
               label: "Videos This Month",
@@ -193,7 +193,7 @@ export default function AnalyticsPage() {
                 const pct = Math.round((count / maxNicheCount) * 100);
                 return (
                   <div key={niche} className="flex items-center gap-3">
-                    <div className="w-40 text-sm text-gray-300 truncate">{niche}</div>
+                    <div className="w-24 sm:w-40 text-sm text-gray-300 truncate">{niche}</div>
                     <div className="flex-1 bg-gray-800 rounded-full h-2">
                       <div
                         className="bg-red-500 h-2 rounded-full transition-all"

@@ -42,7 +42,7 @@ export default function NewVideoPage() {
         </div>
 
         {/* Info cards */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           {[
             { icon: Sparkles, label: "7 AI agents", desc: "Script → visuals → audio → edit → upload", color: "text-purple-400" },
             { icon: DollarSign, label: "~$2–5/video", desc: "GPT-4o, Sora, DALL-E, TTS costs combined", color: "text-green-400" },
